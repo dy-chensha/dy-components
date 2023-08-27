@@ -7,6 +7,8 @@
                 :is="item.type"
                 :configData="item"
                 v-on="$listeners"
+                :formData="formData"
+                @handleEventChange="onHandleEventChange"
             ></component>
             <!-- 时间选择器 -->
             <slot name="timePicker"></slot>
@@ -24,21 +26,42 @@
 import DyInput from './searchFormComponents/DyInput.vue'
 import DySelect from './searchFormComponents/DySelect.vue'
 export default {
-  components:{
-    DyInput,
-    DySelect
-  },
-  props:{
-    formSetting:{
-      type:Array,
-      default(){
-        return []
-      }
-    }
-  },
+    components: {
+        DyInput,
+        DySelect,
+    },
+    props: {
+        formSetting: {
+            type: Array,
+            default() {
+                return []
+            },
+        },
+    },
+    created() {
+        this.initFormData()
+    },
     data() {
         return {
+            formData: {},
         }
+    },
+    methods: {
+        initFormData() {
+            this.formSetting.forEach((item) => {
+                this.formData = {
+                    ...this.formData,
+                    [item.propName]: item.defaultValue,
+                }
+            })
+        },
+        onHandleEventChange(val) {
+            this.formData = {
+                ...this.formData,
+                ...val,
+            }
+            console.log(this.formData)
+        },
     },
 }
 </script>

@@ -56,13 +56,13 @@ export default {
                 }, 500)
             })
         },
-        onHandleEventChange(val){
+         onHandleEventChange(val) {
             this.formData = {
                 ...this.formData,
-                ...val
+                ...val,
             }
-            console.log(this.formData);
-        }
+            console.log(this.formData)
+        },
     },
 }
 </script>

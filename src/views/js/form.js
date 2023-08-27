@@ -23,7 +23,8 @@ export const formSetting = [
         },2000)
       })
     }
-  },{
+  },
+  {
     type:'DySelect',
     defaultValue:'',
     propName: "address2", //字段名
@@ -41,6 +42,23 @@ export const formSetting = [
           ])
         },6000)
       })
+    },
+
+  },
+  {
+    type:'DyInput',
+    defaultValue:'',
+    propName: "num1", //字段名
+    size:'small',
+    linkValue:['num2'],
+    linkValueFun:(formData)=>{
+      return +formData['num2']+10
     }
+  },
+  {
+    type:'DyInput',
+    defaultValue:'',
+    propName: "num2", //字段名
+    size:'small'
   },
 ]
