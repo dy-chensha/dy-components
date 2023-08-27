@@ -8,6 +8,14 @@
                 :configData="item"
                 v-on="$listeners"
             ></component>
+            <!-- 时间选择器 -->
+            <slot name="timePicker"></slot>
+            <!-- 日期选择器 -->
+            <slot name="datePicker"></slot>
+            <!-- 日期时间选择器 -->
+            <slot name="dateTimePicker"></slot>
+            <!-- 默认插槽 -->
+            <slot></slot>
         </div>
     </div>
 </template>

@@ -6,8 +6,19 @@
             :placeholder="configData.placeholder || ''"
             v-bind="propAttrs"
             @change="handleSearch"
+            popper-class="virtualSelect"
         >
+            <virtual-list v-if="options.length>200" style="max-height: 245px; overflow-y: auto;"
+            :data-key="'value'"
+            :data-sources="options"
+            :data-component="itemComponent"
+            :keeps="50"
+            :extra-props="{
+                label: 'label',
+                value: 'value'
+            }" /> 
             <el-option
+                v-else
                 v-for="item in options"
                 :key="item.value"
                 :label="item.label"
@@ -20,10 +31,17 @@
 </template>
 <script>
 import minxi from './mixin'
+// 单个文件引入
+import virtualList from 'vue-virtual-scroll-list'
+import ElOptionNode from './DyVirtualOption.vue';
+
 export default {
+    components: { 'virtual-list': virtualList,ElOptionNode },
+
     data() {
         return {
             options: this.configData.defaultOptions || [],
+            itemComponent: ElOptionNode,
         }
     },
     mixins: [minxi],
@@ -82,3 +100,8 @@ export default {
     },
 }
 </script>
+<style lang='less' >
+.virtualSelect .el-scrollbar .el-scrollbar__bar.is-vertical{
+    width: 0;
+}
+</style>

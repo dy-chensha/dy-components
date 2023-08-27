@@ -11,18 +11,16 @@ export const formSetting = [
     propName: "address1", //字段名
     clearable:true,
     defaultOptions:[
-      {label:'成都',value:'chengdu'}
     ],
     getInitData(){
+      let arr = []
+      for (let i = 0; i < 20; i++) {
+        arr.push({label:'上海'+i,value:'shanghai'+i},)
+      }
       return new Promise((reslove,reject)=>{
         setTimeout(()=>{
-          reslove([
-            {label:'上海',value:'shanghai'},
-            {label:'南京',value:'nanjing'},
-            {label:'北京',value:'bejing'},
-            {label:'海南',value:'hainan'},
-          ])
-        })
+          reslove(arr)
+        },2000)
       })
     }
   },{

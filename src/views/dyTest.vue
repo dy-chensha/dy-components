@@ -1,6 +1,7 @@
 <template>
     <div>
-        <dy-form :formSetting="formSetting"  @handleEventChange="onHandleEventChange" ></dy-form>
+        <dy-form :formSetting="formSetting"  @handleEventChange="onHandleEventChange" >
+        </dy-form>
         <dy-table :requestFun="requestFun" :tableColumns="tableColumns">
             <div slot="dy-header">测试表头</div>
             <template #dy-content="props">
